@@ -10,7 +10,7 @@ pipeline {
         
         stage('Maven Build') {
             steps {
-                sh 'mvn clean install -DbuildNumber=${env.BUILD_NUMBER}'
+                sh 'mvn clean install -DbuildNumber=$BUILD_NUMBER'
             }
             post {
                 success {
