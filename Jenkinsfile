@@ -10,18 +10,18 @@ pipeline {
         
         stage('Maven Build') {
             steps {
-                sh 'mvn clean install -DbuildNum=$BUILD_NUMBER'
+                sh 'mvn clean install -DbuildNumber=${env.BUILD_NUMBER}'
             }
             post {
-                success {
-                    archiveArtifacts artifacts: 'target/*.war', allowEmptyArchive: true
+                always {
+                    archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
                 }
             }
         }
         
         stage('Deploy') {
             steps {
-                sh 'cp target/*.war /var/lib/tomcat9/webapps/'
+                sh 'cp **/target/*.war /var/lib/tomcat9/webapps/'
             }
         }
     }
