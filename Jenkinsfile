@@ -13,8 +13,8 @@ pipeline {
                 sh 'mvn clean install -DbuildNumber=${env.BUILD_NUMBER}'
             }
             post {
-                always {
-                    archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
+                success {
+                    archiveArtifacts artifacts: '**/target/*.war', allowEmptyArchive: true
                 }
             }
         }
