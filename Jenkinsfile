@@ -14,14 +14,14 @@ pipeline {
             }
             post {
                 success {
-                    archiveArtifacts artifacts: '**/target/*.war', allowEmptyArchive: true
+                    archiveArtifacts artifacts: '*/target/*.war', allowEmptyArchive: true
                 }
             }
         }
         
         stage('Deploy') {
             steps {
-                sh 'cp **/target/*.war /var/lib/tomcat9/webapps/'
+                sh 'cp */target/*.war /var/lib/tomcat9/webapps/'
             }
         }
     }
